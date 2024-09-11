@@ -76,7 +76,7 @@ returns:
           "name": "Tinsel",
           "id": "61bedf64b6b41ea54419bbb1"
         },
-        //         ...
+        // ...
         {
           "name": "Elements Test",
           "id": "66de0267f4cb2a3b65abd35f"
@@ -373,7 +373,12 @@ This part is about rendering paints in CSS.
 Other rendering engines may or may not work in similar ways however paints are probably mostly rendered in web apps.
 
 The style examples used here are showcased in an [HTML file](./paints.html) and can be found using the example numbers.
-Any js code segments are also in a [js file](./paints.js).
+Any js code segments are also in a seperate [js file](./paints.js).
+
+Additionally, there is an example on how to generate css for a paint from its ID [here](./example.js).
+It generates the paint for the last example in the HTML file.
+You can change the paint by inserting another ID in the second line of [example.js].
+If you want to use it you can clone this repo and just open the html file in any browser.
 
 ### 1.3.1 color
 
