@@ -76,7 +76,7 @@ returns:
           "name": "Tinsel",
           "id": "61bedf64b6b41ea54419bbb1"
         },
-        // ...
+        //         ...
         {
           "name": "Elements Test",
           "id": "66de0267f4cb2a3b65abd35f"
@@ -292,7 +292,7 @@ query GetAllFields {
 }
 ```
 
-return:
+returns:
 
 ```json
 {
@@ -413,6 +413,21 @@ If the `color` field is `null` the color gets inherited from the users regular t
 }
 ```
 
+However, if we leave it like this, if we get a color that is non-transparent it will actually be rendered above the
+gradients we are about to add.
+To fix that we can add two extra tags that fixes that (honestly IDK how it works but the extension does it like that).
+
+```css
+.color-example {
+    color: rgba(255, 100, 100, 1.000);
+    background-color: currentColor;
+    -webkit-text-fill-color: transparent;
+}
+```
+
+Applying it like this will not work but as soon as we add the `background-image` tag in the next chapters this will fix
+itself.
+
 ### 1.3.2 Gradients
 
 A lot of paints rely on gradients for their coloring.
@@ -458,6 +473,8 @@ In the example of `Candy Cane` that angle is 45 degrees.
     background-image: linear-gradient(45deg, rgb(210, 210, 210) 10%, rgb(210, 210, 210) 20%, rgb(255, 100, 100) 20%, rgb(255, 100, 100) 30%);;
     background-size: 100% 100%;
     background-clip: text;
+    background-color: currentColor;
+    -webkit-text-fill-color: transparent;
 }
 ```
 
@@ -474,10 +491,12 @@ If it is set to `true` the `linear-gradient` converts into a `repeating-linear-g
 
 ```css
 .repeating-linear-gradient-example {
-    color: rgba(255, 100, 100, 0.000);
+    color: rgba(255, 100, 100, 1.000);
     background-image: repeating-linear-gradient(45deg, rgb(210, 210, 210) 10%, rgb(210, 210, 210) 20%, rgb(255, 100, 100) 20%, rgb(255, 100, 100) 30%);;
     background-size: 100% 100%;
     background-clip: text;
+    background-color: currentColor;
+    -webkit-text-fill-color: transparent;
 }
 ```
 
@@ -495,6 +514,8 @@ For the paint `Solar Flare (62dc3339911f10b7fced2f6c)` this looks something like
     background-image: radial-gradient(ellipse, rgb(255, 211, 92) 72%, rgb(255, 136, 0) 87%, rgb(245, 122, 41) 88%, rgb(249, 218, 134) 95%);
     background-size: 100% 100%;
     background-clip: text;
+    background-color: currentColor;
+    -webkit-text-fill-color: transparent;
 }
 ```
 
@@ -510,6 +531,8 @@ Again, like with linear gradients, whenever the `repeat` field is `true` we need
     background-image: repeating-radial-gradient(ellipse, rgb(255, 211, 92) 72%, rgb(255, 136, 0) 87%, rgb(245, 122, 41) 88%, rgb(249, 218, 134) 95%);
     background-size: 100% 100%;
     background-clip: text;
+    background-color: currentColor;
+    -webkit-text-fill-color: transparent;
 }
 ```
 
@@ -527,6 +550,8 @@ In this example the `Eggpire (66bfcd890d8502f0629f9bc8)` paint.
     background-image: url("https://cdn.7tv.app/emote/66bfd747c66164d0fc0bc31e/1x.webp");
     background-size: 100% 100%;
     background-clip: text;
+    background-color: currentColor;
+    -webkit-text-fill-color: transparent;
 }
 ```
 
@@ -574,6 +599,8 @@ As values, we have a " "-seperated list of `drop-shadows`.
     background-size: 100% 100%;
     background-clip: text;
     filter: drop-shadow(0px 0px 0.1px rgba(223, 129, 198, 1.000)) drop-shadow(1px 1px 0.1px rgba(112, 0, 103, 1.000));
+    background-color: currentColor;
+    -webkit-text-fill-color: transparent;
 }
 ```
 
@@ -602,6 +629,8 @@ In this example i divided the offsets by 10.
     background-size: 100% 100%;
     background-clip: text;
     filter: drop-shadow(0rem 0rem 0.1rem rgba(223, 129, 198, 1.000)) drop-shadow(0.1rem 0.1rem 0.1rem rgba(112, 0, 103, 1.000));
+    background-color: currentColor;
+    -webkit-text-fill-color: transparent;
 }
 ```
 
