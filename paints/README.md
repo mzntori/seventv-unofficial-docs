@@ -1,4 +1,27 @@
-# Paints
+# Table of Contents
+
+1. [Paints](#1-paints)
+    1. [Tools](#11-tools)
+    2. [Fetching paints](#12-fetching-paints)
+        1. [Requesting all paints](#121-requesting-all-paints)
+        2. [Requesting specific paints](#122-requesting-specific-paints)
+        3. [Getting Cosmetic IDs](#123-getting-cosmetic-ids)
+            1. [All User Cosmetics](#1231-all-user-cosmetics)
+            2. [Only active paint](#1232-only-active-paint)
+            3. [Making a full paint request](#1233-making-a-full-paint-request)
+    3. [Rendering paints using CSS](#13-rendering-paints-using-css)
+        1. [color](#131-color)
+        2. [Gradients](#132-gradients)
+            1. [Linear gradients](#1321-linear-gradients)
+            2. [Repeating linear gradients](#1322-repeating-linear-gradients)
+            3. [Radial gradients](#1323-radial-gradients)
+            4. [Repeating radial gradients](#1324-repeating-radial-gradients)
+        3. [URL backgrounds](#133-url-backgrounds)
+        4. [Shadows](#134-shadows)
+            1. [Accounting for font size](#1341-accounting-for-font-size)
+2. [Conclusion](#2-conclusion)
+
+# 1. Paints
 
 Paints are a 7TV cosmetic that allow a user to customize their username in Twitch and Kick chatrooms.
 However, 7TVs [GQL API](https://7tv.io/v3/gql) allows developers to fetch these paints for each user and apply them to
@@ -7,12 +30,12 @@ their own applications (e.g. this [vanity tool](https://vanity.zonian.dev/)).
 These docs aim to help with getting relevant data for displaying these paints and also provide reference on how to
 display paints using CSS.
 
-## Tools
+## 1.1 Tools
 
 ***GQL***: All screenshots showing GQL requests or schemas were
 taken [here](https://cloud.hasura.io/public/graphiql?endpoint=https://7tv.io/v3/gql).
 
-## Fetching paints
+## 1.2 Fetching paints
 
 Paints can be fetched using the [GQL API](https://7tv.io/v3/gql).
 You can use [this](https://cloud.hasura.io/public/graphiql?endpoint=https://7tv.io/v3/gql) tool to generate queries
@@ -23,7 +46,7 @@ requested.
 What fields are used for what will be explained later, but I recommend requesting all fields in general.
 For now, I will only request the ID and the Name of the paints to make the examples easier to read.
 
-### Requesting all paints
+### 1.2.1 Requesting all paints
 
 One way to request paints is to request all current paints 7TV provides.
 
@@ -64,7 +87,7 @@ returns:
 }
 ```
 
-### Requesting specific paints
+### 1.2.2 Requesting specific paints
 
 What, however if you only want one or a few selected paints?
 To select a list of paints you can provide them in the `list` parameter.
@@ -105,11 +128,11 @@ returns:
 }
 ```
 
-### Getting Cosmetic IDs
+### 1.2.3 Getting Cosmetic IDs
 
 Of course just getting the paint data will probably not be enough for most applications.
 
-#### All User Cosmetics
+#### 1.2.3.1 All User Cosmetics
 
 To get all cosmetics a user owns you can use the following query:
 
@@ -182,7 +205,7 @@ query GetUserPaints {
 
 From here on out you can use the `cosmetics` field to get the full paint data.
 
-#### Only active paint
+#### 1.2.3.2 Only active paint
 
 If you only need the paint the user is currently using you can get that through the `style/paint` field.
 This saves you an extra request and some filtering.
@@ -218,7 +241,7 @@ get from the `cosmetics` field):
 }
 ```
 
-#### Making a full paint request
+#### 1.2.3.3 Making a full paint request
 
 To properly render a paint you need to request (almost) all fields of a paint.
 As of writing `gradients`, which is just another way of passing fields like `angle` or `function` that exist outside of
@@ -344,7 +367,7 @@ return:
 }
 ```
 
-## Rendering paints using CSS
+## 1.3 Rendering paints using CSS
 
 This part is about rendering paints in CSS.
 Other rendering engines may or may not work in similar ways however paints are probably mostly rendered in web apps.
@@ -352,7 +375,7 @@ Other rendering engines may or may not work in similar ways however paints are p
 The style examples used here are showcased in an [HTML file](./paints.html) and can be found using the example numbers.
 Any js code segments are also in a [js file](./paints.js).
 
-### color
+### 1.3.1 color
 
 Each paint may provide a base RGBA color returned in the `color` field encoded as an unsigned integer.
 The 8 MSBs represent the red value, the next 8 the green, the next 8 the blue and finally the 8 LSBs the alpha value.
@@ -390,13 +413,13 @@ If the `color` field is `null` the color gets inherited from the users regular t
 }
 ```
 
-### Gradients
+### 1.3.2 Gradients
 
 A lot of paints rely on gradients for their coloring.
 These are achieved using the `background-image` CSS tag.
 There are a few different types of gradients.
 
-#### Linear gradients
+#### 1.3.2.1 Linear gradients
 
 A paint uses a linear gradient when the `function` field is set to `"LINEAR_GRADIENT"` like in our `Candy Cane` example.
 Other value for this field are `RADIAL_GRADIENT` or `URL`.
@@ -444,7 +467,7 @@ to `100% 100%`.
 However, this will not to render the gradient properly in the case of `Candy Cane`.
 As you might notice there is only one stripe.
 
-#### Repeating linear gradients
+#### 1.3.2.2 Repeating linear gradients
 
 Every paint has a field `repeat`.
 If it is set to `true` the `linear-gradient` converts into a `repeating-linear-gradient`.
@@ -458,7 +481,7 @@ If it is set to `true` the `linear-gradient` converts into a `repeating-linear-g
 }
 ```
 
-#### Radial gradients
+#### 1.3.2.3 Radial gradients
 
 Radial gradients work similar to linear gradients, however instead of an `angle` a `shape` may be provided.
 If shape is `null` you should default to `"circle"`.
@@ -477,7 +500,7 @@ For the paint `Solar Flare (62dc3339911f10b7fced2f6c)` this looks something like
 
 Now, that does not render the paint properly.
 
-#### Repeating radial gradients
+#### 1.3.2.4 Repeating radial gradients
 
 Again, like with linear gradients, whenever the `repeat` field is `true` we need to use a repeating radiant.
 
@@ -490,7 +513,7 @@ Again, like with linear gradients, whenever the `repeat` field is `true` we need
 }
 ```
 
-### URL backgrounds
+### 1.3.3 URL backgrounds
 
 Next to linear and radial gradients there is a third way a background can be colored and that is per url.
 The `function` field will be `"URL"` in this case.
@@ -511,7 +534,7 @@ If no url is provided the url function will receive an empty string, which resul
 Be aware that some paints (like `Eggpire`) have a fully transparent color underneath which in theory could lead to
 invisible usernames.
 
-### Shadows
+### 1.3.4 Shadows
 
 A lot of paints also have shadows.
 Data about shadows can be found under the `shadows` field.
@@ -562,7 +585,7 @@ const createDropShadow = (x_offset, y_offset, radius, color) => {
 }
 ```
 
-#### Accounting for font size
+#### 1.3.4.1 Accounting for font size
 
 I don't think any official 7TV application does this, so this is just a personal opinion, but if your application has
 large text that gets "painted" you
@@ -581,6 +604,8 @@ In this example i divided the offsets by 10.
     filter: drop-shadow(0rem 0rem 0.1rem rgba(223, 129, 198, 1.000)) drop-shadow(0.1rem 0.1rem 0.1rem rgba(112, 0, 103, 1.000));
 }
 ```
+
+# 2 Conclusion
 
 This concludes all currently used fields in paints.
 There are some others like `text` which allows to change things like font weight, but it is not in use in any paint
