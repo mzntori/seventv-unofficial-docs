@@ -33,8 +33,8 @@ this is not up to date.
 
 ## 1.1 Tools
 
-***GQL***: All screenshots showing GQL requests or schemas were
-taken [here](https://cloud.hasura.io/public/graphiql?endpoint=https://7tv.io/v3/gql).
+***GQL***: I use this tool to test GQL queries and i can recommend it: 
+[Hasura Graphiql](https://cloud.hasura.io/public/graphiql?endpoint=https://7tv.io/v3/gql).
 
 ## 1.2 Fetching paints
 
