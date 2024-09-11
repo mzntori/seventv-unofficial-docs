@@ -28,7 +28,8 @@ However, 7TVs [GQL API](https://7tv.io/v3/gql) allows developers to fetch these 
 their own applications (e.g. this [vanity tool](https://vanity.zonian.dev/)).
 
 These docs aim to help with getting relevant data for displaying these paints and also provide reference on how to
-display paints using CSS.
+display paints using CSS. Also note that these docs only work with v3 of the API, if v4 is released, and you read this,
+this is not up to date.
 
 ## 1.1 Tools
 
