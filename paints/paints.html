@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>
+    CSS Examples
+</h1>
+<h3>
+    1. color
+</h3>
+<span class="example">
+    <span class="color-example">Candy Cane</span>
+    <span class="paint-id">61bede3db6b41ea54419bbb0</span>
+</span>
+<h3>
+    2. linear gradients
+</h3>
+<span class="example">
+    <span class="linear-gradient-example">Candy Cane</span>
+    <span class="paint-id">61bede3db6b41ea54419bbb0</span>
+</span>
+<h3>
+    3. repeating linear gradients
+</h3>
+<span class="example">
+    <span class="repeating-linear-gradient-example">Candy Cane</span>
+    <span class="paint-id">61bede3db6b41ea54419bbb0</span>
+</span>
+<h3>
+    4. radial gradients
+</h3>
+<span class="example">
+    <span class="radial-gradient-example">Solar Flare</span>
+    <span class="paint-id">62dc3339911f10b7fced2f6c</span>
+</span>
+<h3>
+    5. repeating radial gradients
+</h3>
+<span class="example">
+    <span class="repeating-radial-gradient-example">Solar Flare</span>
+    <span class="paint-id">62dc3339911f10b7fced2f6c</span>
+</span>
+<h3>
+    6. URL background
+</h3>
+<span class="example">
+    <span class="url-background-example">Eggpire</span>
+    <span class="paint-id">66bfcd890d8502f0629f9bc8</span>
+</span>
+<h3>
+    7. shadows
+</h3>
+<span class="example">
+    <span class="shadows-example">Eggpire</span>
+    <span class="paint-id">66bfcd890d8502f0629f9bc8</span>
+</span>
+<h3>
+    8 shadows using rem
+</h3>
+<span class="example">
+    <span class="shadows-using-rem-example" style="font-size: inherit">Eggpire</span>
+    <span class="shadows-using-rem-example" style="font-size: 10px">Eggpire</span>
+    <span class="shadows-using-rem-example" style="font-size: 40px">Eggpire</span>
+    <span class="paint-id">66bfcd890d8502f0629f9bc8</span>
+</span>
+</body>
+
+<style>
+    .color-example {
+        color: rgba(255, 100, 100, 1.000);
+    }
+
+    .linear-gradient-example {
+        color: rgba(255, 100, 100, 0.000);
+        background-image: linear-gradient(45deg, rgb(210, 210, 210) 10%, rgb(210, 210, 210) 20%, rgb(255, 100, 100) 20%, rgb(255, 100, 100) 30%);;
+        background-size: 100% 100%;
+        background-clip: text;
+    }
+
+
+    .repeating-linear-gradient-example {
+        color: rgba(255, 100, 100, 0.000);
+        background-image: repeating-linear-gradient(45deg, rgb(210, 210, 210) 10%, rgb(210, 210, 210) 20%, rgb(255, 100, 100) 20%, rgb(255, 100, 100) 30%);;
+        background-size: 100% 100%;
+        background-clip: text;
+    }
+
+    .radial-gradient-example {
+        color: inherit;
+        background-image: radial-gradient(ellipse, rgb(255, 211, 92) 72%, rgb(255, 136, 0) 87%, rgb(245, 122, 41) 88%, rgb(249, 218, 134) 95%);
+        background-size: 100% 100%;
+        background-clip: text;
+    }
+
+    .repeating-radial-gradient-example {
+        color: inherit;
+        background-image: repeating-radial-gradient(ellipse, rgb(255, 211, 92) 72%, rgb(255, 136, 0) 87%, rgb(245, 122, 41) 88%, rgb(249, 218, 134) 95%);
+        background-size: 100% 100%;
+        background-clip: text;
+    }
+
+    .url-background-example {
+        color: rgba(0, 0, 0, 0.000);
+        background-image: url("https://cdn.7tv.app/emote/66bfd747c66164d0fc0bc31e/1x.webp");
+        background-size: 100% 100%;
+        background-clip: text;
+    }
+
+    .shadows-example {
+        color: rgba(0, 0, 0, 0.000);
+        background-image: url("https://cdn.7tv.app/emote/66bfd747c66164d0fc0bc31e/1x.webp");
+        background-size: 100% 100%;
+        background-clip: text;
+        filter: drop-shadow(0px 0px 0.1px rgba(223, 129, 198, 1.000)) drop-shadow(1px 1px 0.1px rgba(112, 0, 103, 1.000));
+    }
+
+    .shadows-using-rem-example {
+        color: rgba(0, 0, 0, 0.000);
+        background-image: url("https://cdn.7tv.app/emote/66bfd747c66164d0fc0bc31e/1x.webp");
+        background-size: 100% 100%;
+        background-clip: text;
+        filter: drop-shadow(0rem 0rem 0.1rem rgba(223, 129, 198, 1.000)) drop-shadow(0.1rem 0.1rem 0.1rem rgba(112, 0, 103, 1.000));
+    }
+
+    .example {
+        color: rgba(0, 0, 0, 0.000);
+    }
+
+    .paint-id {
+        color: lightgray;
+        font-size: 16px;
+        font-family: "Source Code Pro", serif;
+    }
+
+    span {
+        color: black;
+        font-family: Arial, serif;
+        font-size: 30px;
+        font-weight: bold;
+    }
+</style>
+</html>
